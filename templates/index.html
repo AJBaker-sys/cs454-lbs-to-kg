@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LBS → KG Converter</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 2rem auto; }
+    input, button { padding: 0.5rem; margin: 0.5rem 0; }
+    .result { margin-top: 1rem; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Pounds → Kilograms Converter</h1>
+  <p>Enter weight in pounds:</p>
+  <input id="lbs" type="number" step="0.1" placeholder="e.g., 150">
+  <button onclick="convert()">Convert</button>
+  <div class="result" id="result"></div>
+
+  <script>
+    async function convert() {
+      const lbs = document.getElementById('lbs').value;
+      const res = await fetch(`/convert?lbs=${lbs}`);
+      const data = await res.json();
+      if (data.error) {
+        document.getElementById('result').innerText = "Error: " + data.error;
+      } else {
+        document.getElementById('result').innerText = 
+          `${data.lbs} lbs = ${data.kg} kg`;
+      }
+    }
+  </script>
+</body>
+</html>
