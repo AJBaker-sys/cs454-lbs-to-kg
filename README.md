@@ -42,7 +42,6 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 - View logs: docker-compose logs -f
 - Stop services: docker-compose down
 - Enable Docker on boot: sudo systemctl enable docker
-- Add SSL (optional): sudo apt install certbot python3-certbot-nginx && sudo certbot --nginx
 
 ### Testing
 Public URL: http://\<PUBLIC_IP>/convert?lbs=150 (or https if setup).
@@ -61,8 +60,10 @@ I made a simple script for convenience you can just run
 To stop and remove containers, networks, and images:
  - cd cs454-lbs-to-kg
  - docker-compose down --rmi all
+
 To reclaim disk space, remove unused Docker data:
  - docker system prune -f
+
 Terminate EC2: AWS Console > EC2 > Instances > Terminate. Delete key pair, security group if orphaned. Check for EBS volumes.
 
 ## Public Endpoint
