@@ -54,9 +54,8 @@ Examples:
 - Error negative: `curl 'https://yourdomain.com/convert?lbs=-5'` → 422 JSON error
 - Error NaN: `curl 'https://yourdomain.com/convert?lbs=NaN'` → 400 JSON error
 
-Unit tests validate the conversion logic. Install pytest on the EC2 instance or a local environment:
- - pip install pytest
- - pytest src/tests/ --cov=src --cov-report=term
+I made a simple script for convenience you can just run
+ - docker exec -it flask_app sh ./run_tests.sh
 
 ### Cleanup & Cost Hygiene
 To stop and remove containers, networks, and images:
