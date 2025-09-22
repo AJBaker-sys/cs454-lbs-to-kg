@@ -2,7 +2,7 @@
 This project deploys a simple REST API on AWS EC2 using Docker. The API converts pounds (lbs) to kilograms (kg) via a GET endpoint. Built with Flask, containerized with Docker, and served behind an Nginx reverse proxy.
 
 ## Features
-- API Endpoint: GET /convert?lbs=<float> returns {"lbs": <float>, "kg": <float>, "formula": "..."}.
+- API Endpoint: GET /convert?lbs=\<float> returns {"lbs": \<float>, "kg": \<float>, "formula": "..."}.
 - Error Handling: Validates input, returns 400/422 for invalid/negative inputs.
 - Gunicorn for WSGI, Nginx for proxying, healthchecks for reliability.
 - Web Interface: Input field for lbs, displays kg result via AJAX.
@@ -34,8 +34,8 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 - docker-compose up --build -d
 
 ### Access
-- Web UI: http://<EC2-PUBLIC-IP>
-- API: curl "http://<EC2-PUBLIC-IP>/convert?lbs=150"
+- Web UI: http://\<EC2-PUBLIC-IP>
+- API: curl "http://\<EC2-PUBLIC-IP>/convert?lbs=150"
     - Response: {"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}
 
 ### Management
@@ -45,14 +45,14 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 - Add SSL (optional): sudo apt install certbot python3-certbot-nginx && sudo certbot --nginx
 
 ### Testing
-Public URL: http://<PUBLIC_IP>/convert?lbs=150 (or https if setup).
+Public URL: http://\<PUBLIC_IP>/convert?lbs=150 (or https if setup).
 Examples:
-- Normal: `curl 'https://yourdomain.com/convert?lbs=150'` → `{"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}`
-- Zero: `curl 'https://yourdomain.com/convert?lbs=0'` → `{"lbs":0.0,"kg":0.0,"formula":"kg = lbs * 0.45359237"}`
-- Edge: `curl 'https://yourdomain.com/convert?lbs=0.1'` → `{"lbs":0.1,"kg":0.045,"formula":"kg = lbs * 0.45359237"}`
-- Error missing: `curl 'https://yourdomain.com/convert'` → 400 JSON error
-- Error negative: `curl 'https://yourdomain.com/convert?lbs=-5'` → 422 JSON error
-- Error NaN: `curl 'https://yourdomain.com/convert?lbs=NaN'` → 400 JSON error
+- Normal: `curl 'https://\<PUBLIC_IP>/convert?lbs=150'` → `{"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}`
+- Zero: `curl 'https://\<PUBLIC_IP>/convert?lbs=0'` → `{"lbs":0.0,"kg":0.0,"formula":"kg = lbs * 0.45359237"}`
+- Edge: `curl 'https://\<PUBLIC_IP>/convert?lbs=0.1'` → `{"lbs":0.1,"kg":0.045,"formula":"kg = lbs * 0.45359237"}`
+- Error missing: `curl 'https://\<PUBLIC_IP>/convert'` → 400 JSON error
+- Error negative: `curl 'https://\<PUBLIC_IP>/convert?lbs=-5'` → 422 JSON error
+- Error NaN: `curl 'https://\<PUBLIC_IP>/convert?lbs=NaN'` → 400 JSON error
 
 I made a simple script for convenience you can just run
  - docker exec -it flask_app sh ./run_tests.sh
@@ -66,7 +66,7 @@ To reclaim disk space, remove unused Docker data:
 Terminate EC2: AWS Console > EC2 > Instances > Terminate. Delete key pair, security group if orphaned. Check for EBS volumes.
 
 ## Public Endpoint
-- URL: https://ip
+- URL: https://\<PUBLIC_IP>
 - Security Group Summary: Inbound - SSH:22 (your IP), HTTP:80 (all). Least privilege applied.
 
 ## Screenshots
