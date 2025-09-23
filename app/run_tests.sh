@@ -8,28 +8,28 @@ fi
 
 IP=$1
 
-echo "Running Pounds-to-Kilograms API tests against https://$IP"
+echo "Running Pounds-to-Kilograms API tests against http://$IP"
 
 echo -e "\nTest: Normal"
-curl -s "https://$IP/convert?lbs=150"
+curl -s "http://$IP/convert?lbs=150"
 echo -e "\n"
 
 echo "Test: Zero"
-curl -s "https://$IP/convert?lbs=0"
+curl -s "http://$IP/convert?lbs=0"
 echo -e "\n"
 
 echo "Test: Edge"
-curl -s "https://$IP/convert?lbs=0.1"
+curl -s "http://$IP/convert?lbs=0.1"
 echo -e "\n"
 
 echo "Test: Error missing lbs parameter"
-curl -s -w "\nHTTP Status: %{http_code}\n" "https://$IP/convert"
+curl -s -w "\nHTTP Status: %{http_code}\n" "http://$IP/convert"
 echo -e "\n"
 
 echo "Test: Error negative lbs"
-curl -s -w "\nHTTP Status: %{http_code}\n" "https://$IP/convert?lbs=-5"
+curl -s -w "\nHTTP Status: %{http_code}\n" "http://$IP/convert?lbs=-5"
 echo -e "\n"
 
 echo "Test: Error NaN lbs"
-curl -s -w "\nHTTP Status: %{http_code}\n" "https://$IP/convert?lbs=NaN"
+curl -s -w "\nHTTP Status: %{http_code}\n" "http://$IP/convert?lbs=NaN"
 echo -e "\n"
