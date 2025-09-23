@@ -1,35 +1,25 @@
-#!/bin/sh
+#!/bin/bash
 
-# Usage: ./run_tests.sh <PUBLIC_IP>
-if [ -z "$1" ]; then
-  echo "Usage: $0 <PUBLIC_IP>"
-  exit 1
-fi
+BASE_URL=${1:-localhost}
 
-IP=$1
+echo "Running specific test cases against http://$BASE_URL/convert..."
+echo
 
-echo "Running Pounds-to-Kilograms API tests against http://$IP"
+# List of test descriptions and query paths
+declare -a TESTS=(
+    "1 Happy path: /convert?lbs=0"
+    "2 Typical: /convert?lbs=150"
+    "3 Edge: /convert?lbs=0.1"
+    "4 Error (missing param): /convert"
+    "5 Error (negative): /convert?lbs=-5"
+    "6 Error (NaN): /convert?lbs=NaN"
+)
 
-echo -e "\nTest: Normal"
-curl -s "http://$IP/convert?lbs=150"
-echo -e "\n"
+for test in "${TESTS[@]}"; do
+    label=$(echo "$test" | cut -d':' -f1)
+    path=$(echo "$test" | cut -d':' -f2- | xargs)
 
-echo "Test: Zero"
-curl -s "http://$IP/convert?lbs=0"
-echo -e "\n"
-
-echo "Test: Edge"
-curl -s "http://$IP/convert?lbs=0.1"
-echo -e "\n"
-
-echo "Test: Error missing lbs parameter"
-curl -s -w "\nHTTP Status: %{http_code}\n" "http://$IP/convert"
-echo -e "\n"
-
-echo "Test: Error negative lbs"
-curl -s -w "\nHTTP Status: %{http_code}\n" "http://$IP/convert?lbs=-5"
-echo -e "\n"
-
-echo "Test: Error NaN lbs"
-curl -s -w "\nHTTP Status: %{http_code}\n" "http://$IP/convert?lbs=NaN"
-echo -e "\n"
+    echo "$label → $path"
+    curl -s "http://$BASE_URL$path"
+    echo -e "\n---"
+done
