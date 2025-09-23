@@ -54,7 +54,7 @@ Examples:
 - Error NaN: `curl 'https://\<PUBLIC_IP>/convert?lbs=NaN'` → 400 JSON error
 
 I made a simple script for convenience you can just run
-    `docker exec -it flask_app sh ./run_tests.sh`
+    `cd app` then `.\run_tests` (you can specify an ip or default to localhost)
 
 ### Cleanup & Cost Hygiene
 To stop and remove containers, networks, and images:
