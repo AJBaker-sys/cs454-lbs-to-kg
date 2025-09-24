@@ -46,12 +46,12 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 ### Testing
 Public URL: http://\<PUBLIC_IP>/convert?lbs=150 (or https if setup).
 Examples:
-- Normal: `curl 'https://\<PUBLIC_IP>/convert?lbs=150'` → `{"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}`
-- Zero: `curl 'https://\<PUBLIC_IP>/convert?lbs=0'` → `{"lbs":0.0,"kg":0.0,"formula":"kg = lbs * 0.45359237"}`
-- Edge: `curl 'https://\<PUBLIC_IP>/convert?lbs=0.1'` → `{"lbs":0.1,"kg":0.045,"formula":"kg = lbs * 0.45359237"}`
-- Error missing: `curl 'https://\<PUBLIC_IP>/convert'` → 400 JSON error
-- Error negative: `curl 'https://\<PUBLIC_IP>/convert?lbs=-5'` → 422 JSON error
-- Error NaN: `curl 'https://\<PUBLIC_IP>/convert?lbs=NaN'` → 400 JSON error
+- Normal: `curl 'http://\<PUBLIC_IP>/convert?lbs=150'` → `{"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}`
+- Zero: `curl 'http://\<PUBLIC_IP>/convert?lbs=0'` → `{"lbs":0.0,"kg":0.0,"formula":"kg = lbs * 0.45359237"}`
+- Edge: `curl 'http://\<PUBLIC_IP>/convert?lbs=0.1'` → `{"lbs":0.1,"kg":0.045,"formula":"kg = lbs * 0.45359237"}`
+- Error missing: `curl 'http://\<PUBLIC_IP>/convert'` → 400 JSON error
+- Error negative: `curl 'http://\<PUBLIC_IP>/convert?lbs=-5'` → 422 JSON error
+- Error NaN: `curl 'http://\<PUBLIC_IP>/convert?lbs=NaN'` → 400 JSON error
 
 I made a simple script for convenience you can just run
     `cd app` then `.\run_tests` (you can specify an ip or default to localhost)
