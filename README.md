@@ -44,12 +44,12 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 ### Testing
 Public URL: http://\<PUBLIC_IP>/convert?lbs=150 (or https if setup).
 Examples:
-- Normal: `curl 'http://\<PUBLIC_IP>/convert?lbs=150'` → `{"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}`
-- Zero: `curl 'http://\<PUBLIC_IP>/convert?lbs=0'` → `{"lbs":0.0,"kg":0.0,"formula":"kg = lbs * 0.45359237"}`
-- Edge: `curl 'http://\<PUBLIC_IP>/convert?lbs=0.1'` → `{"lbs":0.1,"kg":0.045,"formula":"kg = lbs * 0.45359237"}`
-- Error missing: `curl 'http://\<PUBLIC_IP>/convert'` → 400 JSON error
-- Error negative: `curl 'http://\<PUBLIC_IP>/convert?lbs=-5'` → 422 JSON error
-- Error NaN: `curl 'http://\<PUBLIC_IP>/convert?lbs=NaN'` → 400 JSON error
+- Normal: `curl 'http://<PUBLIC_IP>/convert?lbs=150'` → `{"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}`
+- Zero: `curl 'http://<PUBLIC_IP>/convert?lbs=0'` → `{"lbs":0.0,"kg":0.0,"formula":"kg = lbs * 0.45359237"}`
+- Edge: `curl 'http://<PUBLIC_IP>/convert?lbs=0.1'` → `{"lbs":0.1,"kg":0.045,"formula":"kg = lbs * 0.45359237"}`
+- Error missing: `curl 'http://<PUBLIC_IP>/convert'` → 400 JSON error
+- Error negative: `curl 'http://<PUBLIC_IP>/convert?lbs=-5'` → 422 JSON error
+- Error NaN: `curl 'http://<PUBLIC_IP>/convert?lbs=NaN'` → 400 JSON error
 
 I made a simple script for convenience you can just run
     `cd app` then `.\run_tests` (you can specify an ip or default to localhost)
@@ -69,6 +69,13 @@ Terminate EC2: AWS Console > EC2 > Instances > Terminate. Delete key pair, secur
 
 ## Screenshots
 (Include in submission: curl success/error, docker logs, AWS Security Group console shot)
+<img width="588" height="270" alt="image" src="https://github.com/user-attachments/assets/5389ce7c-0ddd-47ae-ae85-052322a39147" />
+<img width="420" height="260" alt="image" src="https://github.com/user-attachments/assets/db33ae17-4063-4082-b4ae-bfb883e06872" />
+<img width="440" height="125" alt="image" src="https://github.com/user-attachments/assets/eedcf5d1-bc04-4e29-a72b-246b38369508" />
+<img width="420" height="125" alt="image" src="https://github.com/user-attachments/assets/81b7aff9-d163-433e-b038-fbc01be9b575" />
 
 ## Video Demo
-(Link here)
+[youtube video]https://www.youtube.com/watch?v=Qdsuoo66Khg
+
+This demonstrates how I set everything up, then I run some tests to show success.
+
