@@ -11,7 +11,7 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 ### Step 1: Launch EC2 (Easy Console Way)
 - Go to AWS Console > EC2 > Launch Instance.
 - Name: cs454-p1
-- AMI: Ubuntu 22.04 LTS (free tier).
+- AMI: Ubuntu 22.04 LTS (free tier). (This is just an example; anything works)
 - Instance type: t2.micro (free).
 - Key pair: Create new (download .pem file).
 - Security Group: Create new—allow:
