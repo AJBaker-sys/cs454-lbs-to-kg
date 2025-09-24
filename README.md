@@ -4,8 +4,7 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 ## Features
 - API Endpoint: GET /convert?lbs=\<float> returns {"lbs": \<float>, "kg": \<float>, "formula": "..."}.
 - Error Handling: Validates input, returns 400/422 for invalid/negative inputs.
-- Gunicorn for WSGI, Nginx for proxying, healthchecks for reliability.
-- Web Interface: Input field for lbs, displays kg result via AJAX.
+- Gunicorn for WSGI, Nginx for proxying
   
 ## Setup Steps
 ### Step 1: Launch EC2 (Easy Console Way)
@@ -34,7 +33,6 @@ This project deploys a simple REST API on AWS EC2 using Docker. The API converts
 - docker-compose up --build -d
 
 ### Access
-- Web UI: http://\<EC2-PUBLIC-IP>
 - API: curl "http://\<EC2-PUBLIC-IP>/convert?lbs=150"
     - Response: {"lbs":150.0,"kg":68.039,"formula":"kg = lbs * 0.45359237"}
 
@@ -67,7 +65,6 @@ To reclaim disk space, remove unused Docker data:
 Terminate EC2: AWS Console > EC2 > Instances > Terminate. Delete key pair, security group if orphaned. Check for EBS volumes.
 
 ## Public Endpoint
-- URL: https://\<PUBLIC_IP>
 - Security Group Summary: Inbound - SSH:22 (your IP), HTTP:80 (all). Least privilege applied.
 
 ## Screenshots
